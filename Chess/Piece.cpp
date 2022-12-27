@@ -7,6 +7,10 @@ Piece::Piece(const int row, const int col, const bool isWhite) :
 {
 }
 
+Piece::Piece()
+{
+}
+
 Piece::~Piece()
 {
 }
@@ -14,6 +18,11 @@ Piece::~Piece()
 bool Piece::getIsWhite() const
 {
 	return this->_isWhite;
+}
+
+bool Piece::isLegalMove(const int row, const int col) const
+{
+	return false;
 }
 
 void Piece::setPlace(const int row, const int col)
