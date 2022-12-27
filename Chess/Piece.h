@@ -13,6 +13,7 @@ public:
 	int getRow() const;
 	int getCol() const;
 protected:
+	bool _isNull;
 	bool _isWhite;
 	int _row;
 	int _col;

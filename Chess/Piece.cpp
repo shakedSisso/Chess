@@ -3,11 +3,12 @@
 #define BIGGEST_INDEX 7
 
 Piece::Piece(const int row, const int col, const bool isWhite) :
-	_row(row), _col(col), _isWhite(isWhite)
+	_row(row), _col(col), _isWhite(isWhite), _isNull(true)
 {
 }
 
-Piece::Piece()
+Piece::Piece() :
+	_row(0), _col(0), _isWhite(true), _isNull(true)
 {
 }
 

@@ -3,6 +3,7 @@
 King::King(int row, int col, bool isWhite) 
 	: Piece(row, col, isWhite)
 {
+	this->_isNull = false;
 }
 
 King::~King()
