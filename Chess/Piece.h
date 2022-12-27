@@ -1,5 +1,5 @@
 #pragma once
-
+#include <iostream>
 
 class Piece
 {
@@ -9,6 +9,7 @@ public:
 	~Piece();
 	bool getIsWhite() const;
 	virtual bool isLegalMove(const int row, const int col) const;
+	virtual std::ostream& operator<<(std::ostream& os) const;
 	void setPlace(const int row, const int col);
 	int getRow() const;
 	int getCol() const;

@@ -7,4 +7,5 @@ public:
 	Rook(const int row, const int col, const bool isWhite);
 	~Rook();
 	bool isLegalMove(const int row, const int col) const override;
+	std::ostream& operator<<(std::ostream& os) const override;
 };

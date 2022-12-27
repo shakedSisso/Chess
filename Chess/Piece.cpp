@@ -26,6 +26,13 @@ bool Piece::isLegalMove(const int row, const int col) const
 	return false;
 }
 
+std::ostream& Piece::operator<<(std::ostream& os) const
+{
+	os << "#";
+	return os;
+}
+
+
 void Piece::setPlace(const int row, const int col)
 {
 	if (row < 0 || row > BIGGEST_INDEX || col < 0 || col > BIGGEST_INDEX)
