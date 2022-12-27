@@ -12,5 +12,5 @@ public:
 	void printBoard(); // debug
 
 private:
-	Piece** _board;
+	Piece*** _board;
 };
