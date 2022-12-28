@@ -144,7 +144,6 @@
     <ClCompile Include="King.cpp" />
     <ClCompile Include="Piece.cpp" />
     <ClCompile Include="Rook.cpp" />
-    <ClCompile Include="Source.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="test.cpp" />
   </ItemGroup>

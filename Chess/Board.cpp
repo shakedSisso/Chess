@@ -89,17 +89,19 @@ void Board::move(const int orgRow, const int orgCol, const int dstRow, const int
 	pieceToDelete = this->_board[dstRow][dstCol];
 	this->_board[dstRow][dstCol] = pieceToMove;
 	this->_board[orgRow][orgCol] = nullptr;
+	pieceToMove->setPlace(dstRow, dstCol);
 	if (pieceToMove->getIsWhite())
 	{
 		if (((King*)(this->_whiteKing))->isChess(*this))
 		{
 			this->_board[orgRow][orgCol] = pieceToMove;
 			this->_board[dstRow][dstCol] = pieceToDelete;
+			pieceToMove->setPlace(orgRow, orgCol);
 			throw InvalidMoveException(InvalidMoveException::types::SELF_CHESS);
 		}
 		if (((King*)(this->_blackKing))->isChess(*this))
 		{
-			std::cout << "Chess on the black player"; // DEBUG
+			std::cout << "Chess on the black player" << std::endl; // DEBUG
 		}
 	}
 	else
@@ -108,11 +110,12 @@ void Board::move(const int orgRow, const int orgCol, const int dstRow, const int
 		{
 			this->_board[orgRow][orgCol] = pieceToMove;
 			this->_board[dstRow][dstCol] = pieceToDelete;
+			pieceToMove->setPlace(orgRow, orgCol);
 			throw InvalidMoveException(InvalidMoveException::types::SELF_CHESS);
 		}
 		if (((King*)(this->_whiteKing))->isChess(*this))
 		{
-			std::cout << "Chess on the white player"; // DEBUG
+			std::cout << "Chess on the white player" << std::endl; // DEBUG
 		}
 	}
 	if (pieceToDelete != nullptr)

@@ -25,20 +25,48 @@ bool Rook::isLegalMove(const int row, const int col, Board& board) const
 	{
 		throw InvalidMoveException(InvalidMoveException::types::SELF_EATING);
 	}
-	for (i = this->_row + 1; i < row; i++)
+	if (this->_row < row)
 	{
-		if (board.getPiece(i, col) != nullptr)
+		for (i = this->_row + 1; i < row; i++)
 		{
-			throw InvalidMoveException(InvalidMoveException::types::ILLEGAL_MOVE);
+			if (board.getPiece(i, col) != nullptr)
+			{
+				throw InvalidMoveException(InvalidMoveException::types::ILLEGAL_MOVE);
+			}
 		}
 	}
-	for (i = this->_col + 1; i < col; i++)
+	else if (this->_row > row)
 	{
-		if (board.getPiece(row, i) != nullptr)
+		for (i = this->_row - 1; i > row; i--)
 		{
-			throw InvalidMoveException(InvalidMoveException::types::ILLEGAL_MOVE);
+			if (board.getPiece(i, col) != nullptr)
+			{
+				throw InvalidMoveException(InvalidMoveException::types::ILLEGAL_MOVE);
+			}
 		}
 	}
+	
+	if (this->_col < col)
+	{
+		for (i = this->_col + 1; i < col; i++)
+		{
+			if (board.getPiece(row, i) != nullptr)
+			{
+				throw InvalidMoveException(InvalidMoveException::types::ILLEGAL_MOVE);
+			}
+		}
+	}
+	else if (this->_col > col)
+	{
+		for (i = this->_col - 1; i > col; i--)
+		{
+			if (board.getPiece(row, i) != nullptr)
+			{
+				throw InvalidMoveException(InvalidMoveException::types::ILLEGAL_MOVE);
+			}
+		}
+	}
+	
 	return true;
 }
 
