@@ -21,7 +21,7 @@ bool Piece::getIsWhite() const
 	return this->_isWhite;
 }
 
-bool Piece::isLegalMove(const int row, const int col) const
+bool Piece::isLegalMove(const int row, const int col, Board& board) const
 {
 	return false;
 }

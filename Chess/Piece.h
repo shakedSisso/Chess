@@ -1,5 +1,8 @@
 #pragma once
 #include <iostream>
+#include "Board.h"
+
+class Board;
 
 class Piece
 {
@@ -8,7 +11,7 @@ public:
 	Piece();
 	~Piece();
 	bool getIsWhite() const;
-	virtual bool isLegalMove(const int row, const int col) const;
+	virtual bool isLegalMove(const int row, const int col, Board& board) const;
 	virtual std::string toString() const;
 	void setPlace(const int row, const int col);
 	int getRow() const;

@@ -9,7 +9,7 @@ Rook::~Rook()
 {
 }
 
-bool Rook::isLegalMove(const int row, const int col) const
+bool Rook::isLegalMove(const int row, const int col, Board& board) const
 {
 	return false;
 }

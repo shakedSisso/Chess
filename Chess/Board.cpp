@@ -93,3 +93,8 @@ void Board::printBoard()
 		std::cout << std::endl;
 	}
 }
+
+Piece* Board::getPiece(const int row, const int col)
+{
+	return this->_board[row][col];
+}
