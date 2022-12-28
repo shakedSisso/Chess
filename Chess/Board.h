@@ -2,6 +2,8 @@
 #include <iostream>
 #include "Piece.h"
 
+#define ROW_COL_SIZE 8
+
 class Board
 {
 public:
@@ -12,5 +14,5 @@ public:
 	void printBoard(); // debug
 
 private:
-	Piece*** _board;
+	Piece* _board[ROW_COL_SIZE][ROW_COL_SIZE];
 };

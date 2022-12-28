@@ -15,17 +15,13 @@ bool King::isLegalMove(const int row, const int col) const
 	return false;
 }
 
-std::ostream& King::operator<<(std::ostream& os) const
+std::string King::toString() const
 {
 	if (this->_isWhite)
 	{
-		os << "K";
+		return "K";
 	}
-	else
-	{
-		os << "k";
-	}
-	return os;
+	return "k";
 }
 
 bool King::isChess(Board& board)

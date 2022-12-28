@@ -26,12 +26,10 @@ bool Piece::isLegalMove(const int row, const int col) const
 	return false;
 }
 
-std::ostream& Piece::operator<<(std::ostream& os) const
+std::string Piece::toString() const
 {
-	os << "#";
-	return os;
+	return "#";
 }
-
 
 void Piece::setPlace(const int row, const int col)
 {

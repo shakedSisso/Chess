@@ -15,15 +15,11 @@ bool Rook::isLegalMove(const int row, const int col) const
 	return false;
 }
 
-std::ostream& Rook::operator<<(std::ostream& os) const
+std::string Rook::toString() const
 {
 	if (this->_isWhite)
 	{
-		os << "R";
+		return "R";
 	}
-	else
-	{
-		os << "r";
-	}
-	return os;
+	return "r";
 }

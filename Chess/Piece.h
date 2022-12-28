@@ -9,7 +9,7 @@ public:
 	~Piece();
 	bool getIsWhite() const;
 	virtual bool isLegalMove(const int row, const int col) const;
-	virtual std::ostream& operator<<(std::ostream& os) const;
+	virtual std::string toString() const;
 	void setPlace(const int row, const int col);
 	int getRow() const;
 	int getCol() const;

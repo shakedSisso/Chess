@@ -8,6 +8,6 @@ public:
 	King(const int row, const int col, const bool isWhite);
 	~King();
 	bool isLegalMove(const int row, const int col) const override;
-	std::ostream& operator<<(std::ostream& os) const;
+	std::string toString() const override;
 	bool isChess(Board& board);
 };
