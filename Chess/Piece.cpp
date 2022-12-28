@@ -7,11 +7,6 @@ Piece::Piece(const int row, const int col, const bool isWhite) :
 {
 }
 
-Piece::Piece() :
-	_row(0), _col(0), _isWhite(true)
-{
-}
-
 Piece::~Piece()
 {
 }
@@ -19,11 +14,6 @@ Piece::~Piece()
 bool Piece::getIsWhite() const
 {
 	return this->_isWhite;
-}
-
-std::string Piece::toString() const
-{
-	return "#";
 }
 
 void Piece::setPlace(const int row, const int col)

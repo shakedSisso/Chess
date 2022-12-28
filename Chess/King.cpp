@@ -1,4 +1,5 @@
 #include "King.h"
+#include "InvalidMoveException.h"
 
 King::King(int row, int col, bool isWhite) 
 	: Piece(row, col, isWhite)
@@ -11,7 +12,19 @@ King::~King()
 
 bool King::isLegalMove(const int row, const int col, Board& board) const
 {
-	return false;
+	if (this->_row == row && this->_col == col)
+	{
+		throw InvalidMoveException(InvalidMoveException::types::SAME_PLACE);
+	}
+	if (row > this->_row + 1 || row < this->_row - 1 || col > this->_col + 1 || col < this->_col - 1)
+	{
+		throw InvalidMoveException(InvalidMoveException::types::ILLEGAL_MOVE);
+	}
+	if (board.getPiece(row, col) != nullptr && board.getPiece(row, col)->getIsWhite() == this->_isWhite)
+	{
+		throw InvalidMoveException(InvalidMoveException::types::SELF_EATING);
+	}
+	return true;
 }
 
 std::string King::toString() const

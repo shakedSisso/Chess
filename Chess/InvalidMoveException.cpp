@@ -1,7 +1,5 @@
 #include "InvalidMoveException.h"
 
-enum types { NOT_PLAYER_PIECE = 2, SELF_EATING, SELF_CHESS, ILLEGAL_INDEX, ILLEGAL_MOVE, SAME_PLACE };
-
 InvalidMoveException::InvalidMoveException(const int type)
 	: _type(type)
 {	

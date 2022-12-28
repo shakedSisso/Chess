@@ -8,7 +8,6 @@ class Piece
 {
 public:
 	Piece(const int row, const int col, const bool isWhite);
-	Piece();
 	~Piece();
 	bool getIsWhite() const;
 	virtual bool isLegalMove(const int row, const int col, Board& board) const = 0;
