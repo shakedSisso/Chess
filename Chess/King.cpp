@@ -47,9 +47,17 @@ bool King::isChess(Board& board)
 		for ( j = 0; j < ROW_COL_SIZE; j++)
 		{
 			piece = board.getPiece(i, j);
-			if (piece != nullptr && piece->getIsWhite() != this->_isWhite && piece->isLegalMove(this->_row, this->_col, board))
+			if (piece != nullptr && piece->getIsWhite() != this->_isWhite )
 			{
-				return true;
+				try
+				{
+					piece->isLegalMove(this->_row, this->_col, board);
+					return true;
+				}
+				catch (InvalidMoveException& exception) // catching to avoid throwing exceptions on theoratical moves for checking chess
+				{
+					
+				}
 			}
 		}
 	}
