@@ -11,8 +11,8 @@ public:
 	Piece();
 	~Piece();
 	bool getIsWhite() const;
-	virtual bool isLegalMove(const int row, const int col, Board& board) const;
-	virtual std::string toString() const;
+	virtual bool isLegalMove(const int row, const int col, Board& board) const = 0;
+	virtual std::string toString() const = 0;
 	void setPlace(const int row, const int col);
 	int getRow() const;
 	int getCol() const;

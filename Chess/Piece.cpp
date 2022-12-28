@@ -21,11 +21,6 @@ bool Piece::getIsWhite() const
 	return this->_isWhite;
 }
 
-bool Piece::isLegalMove(const int row, const int col, Board& board) const
-{
-	return false;
-}
-
 std::string Piece::toString() const
 {
 	return "#";
