@@ -47,7 +47,7 @@ bool King::isChess(Board& board)
 		for ( j = 0; j < ROW_COL_SIZE; j++)
 		{
 			piece = board.getPiece(i, j);
-			if (piece->getIsWhite() != this->_isWhite && piece->isLegalMove(this->_row, this->_col, board))
+			if (piece != nullptr && piece->getIsWhite() != this->_isWhite && piece->isLegalMove(this->_row, this->_col, board))
 			{
 				return true;
 			}
