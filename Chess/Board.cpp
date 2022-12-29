@@ -2,9 +2,7 @@
 #include "Rook.h"
 #include "King.h"
 #include "InvalidMoveException.h"
-#include <iostream>
 
-#define ROW_COL_SIZE 8
 #define MAX_INDEX 7
 #define WHITE true
 #define BLACK false
