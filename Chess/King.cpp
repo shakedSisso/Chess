@@ -10,7 +10,7 @@ King::~King()
 {
 }
 
-bool King::isLegalMove(const int row, const int col, Board& board) const
+bool King::isLegalMove(const int row, const int col, const Board& board) const
 {
 	if (this->_row == row && this->_col == col)
 	{
