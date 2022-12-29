@@ -15,7 +15,7 @@ Board::Board()
 	int i = 0;
 	int j = 0;
 	for (i = 0; i < ROW_COL_SIZE; i++) {
-		for (j = 0; j < ROW_COL_SIZE; j++)
+		for (j = 0; j < ROW_COL_SIZE; j++) // initing every place on the board with nullptr
 		{
 			this->_board[i][j] = nullptr;
 		}
@@ -31,7 +31,7 @@ Board::~Board()
 	{
 		for (j = 0; j < ROW_COL_SIZE; j++)
 		{
-			if (this->_board[i][j] != nullptr)
+			if (this->_board[i][j] != nullptr) // checking that there is a piece on that place on the board
 			{
 				delete this->_board[i][j];
 				this->_board[i][j] = nullptr;
@@ -40,7 +40,7 @@ Board::~Board()
 	}
 }
 
-void Board::buildBoard(std::string boardString)
+void Board::buildBoard(const std::string boardString)
 {
 	int i = 0;
 	int j = 0;
@@ -49,7 +49,8 @@ void Board::buildBoard(std::string boardString)
 	{
 		for ( j = 0; j < ROW_COL_SIZE; j++)
 		{
-			stringIndex = i * ROW_COL_SIZE + j;
+			stringIndex = i * ROW_COL_SIZE + j; // calculating the index of the current place in the board on the given board's textual representation
+			// A BIG LETTER REPRESENTS A WHITE PIECE AND A SMALL LETTER REPRESENTS A SMALL PIECE
 			if (boardString[stringIndex] == 'K')
             {
 				this->_board[i][j] = new King(i, j, WHITE);
@@ -76,49 +77,51 @@ void Board::move(const int orgRow, const int orgCol, const int dstRow, const int
 {
 	Piece* pieceToMove = nullptr;
 	Piece* pieceToDelete = nullptr;
-	if (orgRow > MAX_INDEX || orgRow < 0 || orgCol > MAX_INDEX || orgCol < 0 || dstRow > MAX_INDEX || dstRow < 0 || dstCol > MAX_INDEX || dstCol < 0)
+	if (orgRow > MAX_INDEX || orgRow < 0 || orgCol > MAX_INDEX || orgCol < 0 || dstRow > MAX_INDEX || dstRow < 0 || dstCol > MAX_INDEX || dstCol < 0) // checking that all rows and cols given are valid
 	{
 		throw InvalidMoveException(InvalidMoveException::types::ILLEGAL_INDEX);
 	}
 	pieceToMove = this->_board[orgRow][orgCol];
-	if (pieceToMove == nullptr)
+	if (pieceToMove == nullptr) // checking that there is a piece on that place on the board
 	{
 		throw InvalidMoveException(InvalidMoveException::types::NOT_PLAYER_PIECE);
 	}
-	pieceToMove->isLegalMove(dstRow, dstCol, *this);
-	pieceToDelete = this->_board[dstRow][dstCol];
+	pieceToMove->isLegalMove(dstRow, dstCol, *this); // if the move will not be legal, an InvalidMoveException will be thrown and this function execution will terminate and the move won't be completed
+	pieceToDelete = this->_board[dstRow][dstCol]; // saving the piece on the desitination location for its deallocation and in incase will need to revert the board to it's original state
 	this->_board[dstRow][dstCol] = pieceToMove;
 	this->_board[orgRow][orgCol] = nullptr;
 	pieceToMove->setPlace(dstRow, dstCol);
-	if (pieceToMove->getIsWhite())
+	if (pieceToMove->getIsWhite()) // checking the color of the piece we are moving
 	{
-		if (((King*)(this->_whiteKing))->isChess(*this))
+		if (((King*)(this->_whiteKing))->isChess(*this)) // checking if the move performs chess on its own king
 		{
+			// Reverting the move
 			this->_board[orgRow][orgCol] = pieceToMove;
 			this->_board[dstRow][dstCol] = pieceToDelete;
-			pieceToMove->setPlace(orgRow, orgCol);
+			pieceToMove->setPlace(orgRow, orgCol); // reverting the location of the piece in its vars
 			throw InvalidMoveException(InvalidMoveException::types::SELF_CHESS);
 		}
-		if (((King*)(this->_blackKing))->isChess(*this))
+		if (((King*)(this->_blackKing))->isChess(*this)) // checking if the move performs chess on the other king
 		{
 			std::cout << "Chess on the black player" << std::endl; // DEBUG
 		}
 	}
 	else
 	{
-		if (((King*)(this->_blackKing))->isChess(*this))
+		if (((King*)(this->_blackKing))->isChess(*this)) // checking if the move performs chess on its own king
 		{
+			// Reverting the move
 			this->_board[orgRow][orgCol] = pieceToMove;
 			this->_board[dstRow][dstCol] = pieceToDelete;
-			pieceToMove->setPlace(orgRow, orgCol);
+			pieceToMove->setPlace(orgRow, orgCol); // reverting the location of the piece in its vars
 			throw InvalidMoveException(InvalidMoveException::types::SELF_CHESS);
 		}
-		if (((King*)(this->_whiteKing))->isChess(*this))
+		if (((King*)(this->_whiteKing))->isChess(*this)) // checking if the move performs chess on the other king
 		{
 			std::cout << "Chess on the white player" << std::endl; // DEBUG
 		}
 	}
-	if (pieceToDelete != nullptr)
+	if (pieceToDelete != nullptr) // checking if the place the piece has moved there was another piece. (Validated on the piece isLegalMove function that the removed piece is from the other color)
 	{
 		delete pieceToDelete;
 	}
