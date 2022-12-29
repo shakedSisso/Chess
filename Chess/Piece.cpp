@@ -18,7 +18,7 @@ bool Piece::getIsWhite() const
 
 void Piece::setPlace(const int row, const int col)
 {
-	if (row < 0 || row > BIGGEST_INDEX || col < 0 || col > BIGGEST_INDEX)
+	if (row < 0 || row > BIGGEST_INDEX || col < 0 || col > BIGGEST_INDEX) // validating input
 	{
 		return;
 	}
