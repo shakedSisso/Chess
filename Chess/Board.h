@@ -14,7 +14,7 @@ public:
 	void buildBoard(std::string boardString);
 	void move(const int orgRow, const int orgCol, const int dstRow, const int dstCol);
 	void printBoard(); // debug
-	Piece* getPiece(const int row, const int col);
+	Piece* getPiece(const int row, const int col) const;
 
 private:
 	Piece* _whiteKing;

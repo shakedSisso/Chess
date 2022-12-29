@@ -148,7 +148,7 @@ void Board::printBoard()
 	}
 }
 
-Piece* Board::getPiece(const int row, const int col)
+Piece* Board::getPiece(const int row, const int col) const
 {
 	return this->_board[row][col];
 }
