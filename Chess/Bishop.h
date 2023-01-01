@@ -1,0 +1,42 @@
+#pragma once
+#include "Board.h"
+#include "Piece.h"
+
+class Bishop : public Piece
+{
+    /*
+    * Function: Bishop
+    * ----------------------------
+    *   The function builds a new object of the class Bishop with the bishop's row and col on the board and its color (black or white using a bool)
+    *
+    *   const int row: the row of the bishop on the board
+    *   const int col: the col of the bishop on the board
+    *   const bool isWhite: the color of the bishop. true for white, false for black
+    *
+    *   returns: builder.
+    */
+	Bishop(const int row, const int col, const bool isWhite);
+    /*
+    * Function: ~Bishop
+    * ----------------------------
+    *   The function is the destructor for the object
+    *
+    *   input: none
+    *
+    *   returns: destructor.
+    */
+	~Bishop();
+
+	bool isLegalMove(const int row, const int col, const Board& board) const override;
+
+    /*
+    * Function: toString
+    * ----------------------------
+    *   The function returns a string with a textual representation of the piece. B for white, b for black
+    *
+    *   input: none
+    *
+    *   returns: std::string. The textual representation of the piece
+    */
+    std::string toString() const override;
+};
