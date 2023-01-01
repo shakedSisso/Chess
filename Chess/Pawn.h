@@ -2,23 +2,23 @@
 #include "Piece.h"
 #include "Board.h"
 
-class Queen : public Piece
+class Pawn : public Piece
 {
 public:
     /*
-    * Function: Queen
+    * Function: Pawn
     * ----------------------------
-    *   The function builds a new object of the class Queen with the queen's row and col on the board and its color (black or white using a bool)
+    *   The function builds a new object of the class Pawn with the pawn's row and col on the board and its color (black or white using a bool)
     *
-    *   const int row: the row of the queen on the board
-    *   const int col: the col of the queen on the board
-    *   const bool isWhite: the color of the queen. true for white, false for black
+    *   const int row: the row of the pawn on the board
+    *   const int col: the col of the pawn on the board
+    *   const bool isWhite: the color of the pawn. true for white, false for black
     *
     *   returns: builder.
     */
-    Queen(const int row, const int col, const bool isWhite);
+    Pawn(const int row, const int col, const bool isWhite);
     /*
-    * Function: ~Queen
+    * Function: ~Pawn
     * ----------------------------
     *   The function is the destructor for the object
     *
@@ -26,14 +26,14 @@ public:
     *
     *   returns: destructor.
     */
-    ~Queen();
+    ~Pawn();
 
     bool isLegalMove(const int row, const int col, const Board& board) const override;
 
     /*
     * Function: toString
     * ----------------------------
-    *   The function returns a string with a textual representation of the piece. Q for white, q for black
+    *   The function returns a string with a textual representation of the piece. P for white, p for black
     *
     *   input: none
     *
