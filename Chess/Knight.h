@@ -4,6 +4,7 @@
 
 class Knight : public Piece
 {
+public:
     /*
     * Function: Knight
     * ----------------------------

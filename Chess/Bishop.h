@@ -4,6 +4,7 @@
 
 class Bishop : public Piece
 {
+public:
     /*
     * Function: Bishop
     * ----------------------------
