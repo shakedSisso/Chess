@@ -85,7 +85,6 @@ void Board::buildBoard(const std::string boardString)
 			{
 				this->_board[i][j] = new Bishop(i, j, BLACK);
 			}
-
 		}
 	}
 }
