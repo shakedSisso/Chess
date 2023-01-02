@@ -2,7 +2,6 @@
 #include "InvalidMoveException.h"
 
 #define POSSIBLE_POSITIONS 8
-//#define POSSIBLE_COLS 4
 
 Knight::Knight(const int row, const int col, const bool isWhite)
     : Piece(row, col, isWhite)
@@ -15,8 +14,6 @@ Knight::~Knight()
 
 bool Knight::isLegalMove(const int row, const int col, const Board& board) const
 {
-	//int possiblePlacesRows[POSSIBLE_ROWS] = { this->_row + 1, this->_row - 1, this->_row  + 2, this->_row - 1 };
-	//int possiblePlacesCols[POSSIBLE_COLS] = { this->_col + 1, this->_col - 1, this->_col + 2, this->_col - 2 };
 	int possiblePlacesRows[POSSIBLE_POSITIONS] = {this->_row - 1, this->_row - 2, this->_row - 2, this->_row - 1, this->_row + 1, this->_row + 2, this->_row + 2, this->_row + 1};
 	int possiblePlacesCols[POSSIBLE_POSITIONS] = {this->_col - 2, this->_col - 1, this->_col + 1, this->_col + 2, this->_col + 2, this->_col + 1, this->_col - 1, this->_col - 2};
 	bool isValid = false;
@@ -36,7 +33,11 @@ bool Knight::isLegalMove(const int row, const int col, const Board& board) const
 	{
 		throw InvalidMoveException(InvalidMoveException::types::ILLEGAL_MOVE);
 	}
-	
+	if (board.getPiece(row, col) != nullptr && board.getPiece(row, col)->getIsWhite() == this->_isWhite) // checking that we are not trying to move to a place that have a piece with the same color
+	{
+		throw InvalidMoveException(InvalidMoveException::types::SELF_EATING);
+	}
+	return true;
 }
 
 std::string Knight::toString() const
