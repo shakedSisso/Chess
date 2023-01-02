@@ -40,4 +40,7 @@ public:
     *   returns: std::string. The textual representation of the piece
     */
     std::string toString() const override;
+    void setDidMoveToTrue();
+private:
+    bool _didMove;
 };
