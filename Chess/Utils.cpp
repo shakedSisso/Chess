@@ -4,7 +4,7 @@
 #define ZERO_ASCII_VALUE 48
 #define ITEM_AMOUNT 4	
 
-static int* changeStringToPlaces(std::string place)
+int* Utils::changeStringToPlaces(std::string place)
 {
 	int* places = new int[ITEM_AMOUNT];
 	places[0] = int(place[0]) - SMALL_A_ASCII_VALUE;
