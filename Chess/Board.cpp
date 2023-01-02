@@ -1,6 +1,8 @@
 #include "Board.h"
 #include "Rook.h"
 #include "King.h"
+#include "Bishop.h"
+#include "Knight.h"
 #include "InvalidMoveException.h"
 
 #define MAX_INDEX 7
@@ -67,6 +69,23 @@ void Board::buildBoard(const std::string boardString)
             {
 				this->_board[i][j] = new Rook(i, j, BLACK);
             }
+			else if (boardString[stringIndex] == 'N')
+			{
+				this->_board[i][j] = new Knight(i, j, WHITE);
+			}
+			else if (boardString[stringIndex] == 'n')
+			{
+				this->_board[i][j] = new Knight(i, j, BLACK);
+			}
+			else if (boardString[stringIndex] == 'B')
+			{
+				this->_board[i][j] = new Bishop(i, j, WHITE);
+			}
+			else if (boardString[stringIndex] == 'b')
+			{
+				this->_board[i][j] = new Bishop(i, j, BLACK);
+			}
+
 		}
 	}
 }
