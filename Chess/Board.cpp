@@ -4,6 +4,7 @@
 #include "Bishop.h"
 #include "Knight.h"
 #include "Queen.h"
+#include "Pawn.h"
 #include "InvalidMoveException.h"
 
 #define MAX_INDEX 7
@@ -94,6 +95,14 @@ void Board::buildBoard(const std::string boardString)
 			{
 				this->_board[i][j] = new Queen(i, j, BLACK);
 			}
+			else if (boardString[stringIndex] == 'P')
+			{
+				this->_board[i][j] = new Pawn(i, j, WHITE);
+			}
+			else if (boardString[stringIndex] == 'p')
+			{
+				this->_board[i][j] = new Pawn(i, j, BLACK);
+			}
 		}
 	}
 }
@@ -150,7 +159,10 @@ void Board::move(const int orgRow, const int orgCol, const int dstRow, const int
 	{
 		delete pieceToDelete;
 	}
-
+	if (dynamic_cast<const Pawn*>(pieceToMove) != nullptr)
+	{
+		((Pawn*)pieceToMove)->setDidMoveToTrue();
+	}
 }
 
 void Board::printBoard()
