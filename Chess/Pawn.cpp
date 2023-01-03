@@ -46,6 +46,10 @@ bool Pawn::isLegalMove(const int row, const int col, const Board& board) const
 			{
 				throw InvalidMoveException(InvalidMoveException::types::ILLEGAL_MOVE);
 			}
+			if (board.getPiece(row, col) != nullptr)
+			{
+				throw InvalidMoveException(InvalidMoveException::types::ILLEGAL_MOVE);
+			}
 		}
 	}
 	else
@@ -71,6 +75,10 @@ bool Pawn::isLegalMove(const int row, const int col, const Board& board) const
 		else
 		{
 			if (this->_didMove && this->_row - 2 == row)
+			{
+				throw InvalidMoveException(InvalidMoveException::types::ILLEGAL_MOVE);
+			}
+			if (board.getPiece(row, col) != nullptr)
 			{
 				throw InvalidMoveException(InvalidMoveException::types::ILLEGAL_MOVE);
 			}
