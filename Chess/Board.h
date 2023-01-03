@@ -46,16 +46,16 @@ public:
 	*	The function validates that the original place contains a piece (If not, the function throws an InvalidMoveException).
 	*	Then the function checks with the piece itself if its able to move to the desitination place.
 	*	Then the function checks if the move makes a chess on the player itself (the move is canceled and an InvalidMoveException is thrown)
-	*	and if the move makes a chess on the opponent
+	*	and if the move makes a chess on the opponent. The function returns an int of 0 or 1. 0 if the move is valid, 1 if the move is valid and chess has occured on the other player.
 	*
 	*   const int orgRow: the original row of the piece to move
 	*	const int orgCol: the original col of the piece to move
 	*	const int dstRow: the row to move the piece to
 	*	const int dstCol: the col to move the piece to
 	*
-	*   returns: void.
+	*   returns: int. 0 or 1.  0 if the move is valid, 1 if the move is valid and chess has occured on the other player
 	*/
-	void move(const int orgRow, const int orgCol, const int dstRow, const int dstCol);
+	int move(const int orgRow, const int orgCol, const int dstRow, const int dstCol);
 	void printBoard(); // debug
 	/*
 	* Function: getPiece const

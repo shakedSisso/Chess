@@ -10,6 +10,8 @@
 #define MAX_INDEX 7
 #define WHITE true
 #define BLACK false
+#define CHESS 1
+#define VALID 0
 
 Board::Board()
 	: _whiteKing(nullptr), _blackKing(nullptr)
@@ -107,7 +109,7 @@ void Board::buildBoard(const std::string boardString)
 	}
 }
 
-void Board::move(const int orgRow, const int orgCol, const int dstRow, const int dstCol)
+int Board::move(const int orgRow, const int orgCol, const int dstRow, const int dstCol)
 {
 	Piece* pieceToMove = nullptr;
 	Piece* pieceToDelete = nullptr;
@@ -137,7 +139,7 @@ void Board::move(const int orgRow, const int orgCol, const int dstRow, const int
 		}
 		if (((King*)(this->_blackKing))->isChess(*this)) // checking if the move performs chess on the other king
 		{
-			std::cout << "Chess on the black player" << std::endl; // DEBUG
+			return CHESS;
 		}
 	}
 	else
@@ -152,7 +154,7 @@ void Board::move(const int orgRow, const int orgCol, const int dstRow, const int
 		}
 		if (((King*)(this->_whiteKing))->isChess(*this)) // checking if the move performs chess on the other king
 		{
-			std::cout << "Chess on the white player" << std::endl; // DEBUG
+			return CHESS;
 		}
 	}
 	if (pieceToDelete != nullptr) // checking if the place the piece has moved there was another piece. (Validated on the piece isLegalMove function that the removed piece is from the other color)
@@ -163,6 +165,7 @@ void Board::move(const int orgRow, const int orgCol, const int dstRow, const int
 	{
 		((Pawn*)pieceToMove)->setDidMoveToTrue();
 	}
+	return VALID;
 }
 
 void Board::printBoard()
