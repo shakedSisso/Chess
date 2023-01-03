@@ -5,10 +5,7 @@ class Player
 public:
 	Player(bool isWhite);
 	~Player();
-	void setTurn();
-	bool getTurn();
-	bool getIsWhite();
+	bool getIsWhite() const;
 private:
-	bool _isPlaying;
 	bool _isWhite;
 };

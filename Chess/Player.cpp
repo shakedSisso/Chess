@@ -1,7 +1,7 @@
 #include "Player.h"
 
 Player::Player(bool isWhite)
-	: _isWhite(isWhite), _isPlaying(false)
+	: _isWhite(isWhite)
 {
 }
 
@@ -9,17 +9,7 @@ Player::~Player()
 {
 }
 
-void Player::setTurn()
-{
-	this->_isPlaying = !this->_isPlaying;
-}
-
-bool Player::getTurn()
-{
-	return this->_isPlaying;
-}
-
-bool Player::getIsWhite()
+bool Player::getIsWhite() const
 {
 	return this->_isWhite;
 }
