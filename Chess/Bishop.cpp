@@ -22,10 +22,11 @@ bool Bishop::isLegalMove(const int row, const int col, const Board& board) const
 	{
 		throw InvalidMoveException(InvalidMoveException::types::SELF_EATING);
 	}
-	if (abs(this->_row - row) != abs(this->_col - col))
+	if (abs(this->_row - row) != abs(this->_col - col)) // checking that if we are trying to move to a place that is not diagonal to the current place (against the bishops movement ability) we'll throw an illegal move exception
 	{
 		throw InvalidMoveException(InvalidMoveException::types::ILLEGAL_MOVE);
 	}
+	// those if statements are checking the diagonal direction (up and right, up and left, down and right, down and left)
 	if (this->_row < row && this->_col < col) 
 	{
 		for (i = 1; i < abs(this->_row - row); i++)
@@ -46,7 +47,7 @@ bool Bishop::isLegalMove(const int row, const int col, const Board& board) const
 			}
 		}
 	}
-	if (this->_row > row && this->_col > col) // checking if the rook is moving from left to right on the board (from a low col to a high col)
+	if (this->_row > row && this->_col > col)
 	{
 		for (i = 1; i < abs(this->_row - row); i++)
 		{
@@ -56,7 +57,7 @@ bool Bishop::isLegalMove(const int row, const int col, const Board& board) const
 			}
 		}
 	}
-	else if (this->_row < row && this->_col > col) // checking if the rook is moving from right to left on the board (from a high col to a low col)
+	else if (this->_row < row && this->_col > col)
 	{
 		for (i = 1; i < abs(this->_row - row); i++)
 		{
