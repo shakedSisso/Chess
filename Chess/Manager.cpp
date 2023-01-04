@@ -31,7 +31,7 @@ Manager::~Manager()
 	this->_board = nullptr;
 }
 
-std::string Manager::handleMove(std::string move)
+std::string Manager::handleMove(const std::string move)
 {
 	int* places = nullptr;
 	Piece* pieceSelected = nullptr;
@@ -41,16 +41,19 @@ std::string Manager::handleMove(std::string move)
 	pieceSelected = this->_board->getPiece(places[ORG_ROW], places[ORG_COl]);
 	try
 	{
-		if (pieceSelected == nullptr || pieceSelected->getIsWhite() != this->_isWhiteTurn)
+		if (pieceSelected == nullptr || pieceSelected->getIsWhite() != this->_isWhiteTurn) // checking if there is not piece in the org place or if the piece there doesn't belong to the current playing player
 		{
+			delete places;
 			throw InvalidMoveException(InvalidMoveException::types::NOT_PLAYER_PIECE);
 		}
 		moveResult = this->_board->move(places[ORG_ROW], places[ORG_COl], places[DST_ROW], places[DST_COl]);
-		this->_isWhiteTurn = !this->_isWhiteTurn;
+		this->_isWhiteTurn = !this->_isWhiteTurn; // since the move is legal, switch the turn to the other player
+		delete places;
 		return std::to_string(moveResult);
 	}
-	catch (InvalidMoveException& exception)
+	catch (InvalidMoveException& exception) // if this exception was thrown that means that this->_board->move wasn't finished and the move can't be performed (reason in the type code of the exception)
 	{
+		delete places;
 		return std::to_string(exception.getType());
 	}
 
