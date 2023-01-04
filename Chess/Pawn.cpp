@@ -16,12 +16,20 @@ bool Pawn::isLegalMove(const int row, const int col, const Board& board) const
 	{
 		throw InvalidMoveException(InvalidMoveException::types::SAME_PLACE);
 	}
+	if (this->_row == row && this->_col != col) //checking that we are not trying to move the piece to side
+	{
+		throw InvalidMoveException(InvalidMoveException::types::ILLEGAL_MOVE);
+	}
 	if (board.getPiece(row, col) != nullptr && board.getPiece(row, col)->getIsWhite() == this->_isWhite) // checking that we are not trying to move to a place that have a piece with the same color
 	{
 		throw InvalidMoveException(InvalidMoveException::types::SELF_EATING);
 	}
 	if (!this->_isMovingUp) // checking if we are white in order to check direction of movement
 	{
+		if (this->_row > row) //checking that we are not trying to move the piece to backwards
+		{
+			throw InvalidMoveException(InvalidMoveException::types::ILLEGAL_MOVE);
+		}
 		if (this->_row + 2 < row) // checking if the place we are trying to go to is far from the current place by at least 3 rows (that means the move is not legal by the rules, a pawn can't move up or down more than two rows)
 		{
 			throw InvalidMoveException(InvalidMoveException::types::ILLEGAL_MOVE);
@@ -54,6 +62,10 @@ bool Pawn::isLegalMove(const int row, const int col, const Board& board) const
 	}
 	else
 	{
+		if (this->_row < row) //checking that we are not trying to move the piece to backwards
+		{
+			throw InvalidMoveException(InvalidMoveException::types::ILLEGAL_MOVE);
+		}
 		if (this->_row - 2 > row) // checking if the place we are trying to go to is far from the current place by at least 3 rows (that means the move is not legal by the rules, a pawn can't move up or down more than two rows)
 		{
 			throw InvalidMoveException(InvalidMoveException::types::ILLEGAL_MOVE);
