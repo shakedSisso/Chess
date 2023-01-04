@@ -56,7 +56,8 @@ public:
 	*   returns: int. 0 or 1.  0 if the move is valid, 1 if the move is valid and chess has occured on the other player
 	*/
 	int move(const int orgRow, const int orgCol, const int dstRow, const int dstCol);
-	void printBoard(); // debug
+
+	void printBoard(); // function for debugging only
 	/*
 	* Function: getPiece const
 	* ----------------------------

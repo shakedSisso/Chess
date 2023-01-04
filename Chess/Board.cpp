@@ -126,7 +126,7 @@ int Board::move(const int orgRow, const int orgCol, const int dstRow, const int 
 	pieceToDelete = this->_board[dstRow][dstCol]; // saving the piece on the desitination location for its deallocation and in incase will need to revert the board to it's original state
 	this->_board[dstRow][dstCol] = pieceToMove;
 	this->_board[orgRow][orgCol] = nullptr;
-	pieceToMove->setPlace(dstRow, dstCol);
+	pieceToMove->setPlace(dstRow, dstCol); // changing the row and col of the piece we are moving to the dst row and col
 	if (pieceToMove->getIsWhite()) // checking the color of the piece we are moving
 	{
 		if (((King*)(this->_whiteKing))->isChess(*this)) // checking if the move performs chess on its own king
@@ -161,7 +161,7 @@ int Board::move(const int orgRow, const int orgCol, const int dstRow, const int 
 	{
 		delete pieceToDelete;
 	}
-	if (dynamic_cast<const Pawn*>(pieceToMove) != nullptr)
+	if (dynamic_cast<const Pawn*>(pieceToMove) != nullptr) // checking if the piece we are moving is a pawn and if so, change the didMove field to true
 	{
 		((Pawn*)pieceToMove)->setDidMoveToTrue();
 	}
