@@ -8,15 +8,16 @@ public:
     /*
     * Function: Pawn
     * ----------------------------
-    *   The function builds a new object of the class Pawn with the pawn's row and col on the board and its color (black or white using a bool)
+    *   The function builds a new object of the class Pawn with the pawn's row and col on the board and its color (black or white using a bool) and its direction of movement (true for up, false for down)
     *
     *   const int row: the row of the pawn on the board
     *   const int col: the col of the pawn on the board
     *   const bool isWhite: the color of the pawn. true for white, false for black
+    *   const bool isMovingUp: the direction of movement of the pawn. true for up on the board, false for down the board
     *
     *   returns: builder.
     */
-    Pawn(const int row, const int col, const bool isWhite);
+    Pawn(const int row, const int col, const bool isWhite, const bool isMovingUp);
     /*
     * Function: ~Pawn
     * ----------------------------
@@ -64,4 +65,5 @@ public:
     void setDidMoveToTrue();
 private:
     bool _didMove;
+    bool _isMovingUp;
 };

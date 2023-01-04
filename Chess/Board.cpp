@@ -49,6 +49,11 @@ void Board::buildBoard(const std::string boardString)
 	int i = 0;
 	int j = 0;
 	int stringIndex = 0;
+	bool isWhiteUp = false;
+	if (!isupper(boardString[0]))
+	{
+		isWhiteUp = true;
+	}
 	for (i = 0; i < ROW_COL_SIZE; i++)
 	{
 		for ( j = 0; j < ROW_COL_SIZE; j++)
@@ -99,11 +104,11 @@ void Board::buildBoard(const std::string boardString)
 			}
 			else if (boardString[stringIndex] == 'P')
 			{
-				this->_board[i][j] = new Pawn(i, j, WHITE);
+				this->_board[i][j] = new Pawn(i, j, WHITE, isWhiteUp);
 			}
 			else if (boardString[stringIndex] == 'p')
 			{
-				this->_board[i][j] = new Pawn(i, j, BLACK);
+				this->_board[i][j] = new Pawn(i, j, BLACK, !isWhiteUp);
 			}
 		}
 	}

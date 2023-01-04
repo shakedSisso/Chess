@@ -1,8 +1,8 @@
 #include "Pawn.h"
 #include "InvalidMoveException.h"
 
-Pawn::Pawn(const int row, const int col, const bool isWhite)
-	: Piece(row, col, isWhite), _didMove(false)
+Pawn::Pawn(const int row, const int col, const bool isWhite, const bool isMovingUp)
+	: Piece(row, col, isWhite), _didMove(false), _isMovingUp(isMovingUp)
 {
 }
 
@@ -20,7 +20,7 @@ bool Pawn::isLegalMove(const int row, const int col, const Board& board) const
 	{
 		throw InvalidMoveException(InvalidMoveException::types::SELF_EATING);
 	}
-	if (this->_isWhite) // checking if we are white in order to check direction of movement
+	if (!this->_isMovingUp) // checking if we are white in order to check direction of movement
 	{
 		if (this->_row + 2 < row) // checking if the place we are trying to go to is far from the current place by at least 3 rows (that means the move is not legal by the rules, a pawn can't move up or down more than two rows)
 		{
